@@ -23,8 +23,8 @@ class Orders
 
         try{
             $result = $useCaseOrdersGetAll->gogogo();
-        } catch (NotFoundException $e) {
-            throw new Exception("404 Not Found");
+        } catch (Exception $e) {
+            throw $e;
         }
 
         return ["orders" => $result];
