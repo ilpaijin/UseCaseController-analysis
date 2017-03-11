@@ -4,7 +4,6 @@ namespace Ucc\Controller;
 
 use Ucc\Model\UseCase\OrdersGetAll as UseCaseOrdersGetAll;
 use Ucc\Model\UseCase\OrdersGetOne as UseCaseOrdersGetOne;
-use Ucc\Exception\NotFoundException;
 use Exception;
 
 /**
