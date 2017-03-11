@@ -16,11 +16,6 @@ abstract class UseCase
     protected $result;
 
     /**
-     * @var $errors \Ucc\Model\UseCase\VO\UseCaseError
-     */
-    protected $error;
-
-    /**
      * @param null $args
      * @return UseCase\VO\UseCaseResult
      * @throws Exception
