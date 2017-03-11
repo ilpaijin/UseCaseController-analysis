@@ -2,6 +2,8 @@
 
 namespace Ucc;
 
+use Exception;
+
 /**
  * Class Api
  * @package Ucc
@@ -15,6 +17,7 @@ class Api
         $request = explode("/", ltrim($_SERVER['REQUEST_URI'], "/"));
 
         $controller = "Ucc\\Controller\\".ucfirst($request[0]);
+
         $controller = new $controller();
 
         $method = strtolower($_SERVER['REQUEST_METHOD']);
@@ -32,9 +35,13 @@ class Api
 
         ob_start();
 
-        echo $controller->$action($resourceId);
-
-        header("Content-Type: application/json; charset=utf-8;");
+        try {
+            header("Content-Type: application/json; charset=utf-8;");
+            echo json_encode(["data" => $controller->$action($resourceId)]);
+        } catch (Exception $e) {
+            header("HTTP/1.1 {$e->getCode()} {$e->getMessage()}");
+            echo json_encode(["error" => $e->getMessage()]);
+        }
 
         ob_end_flush();
     }

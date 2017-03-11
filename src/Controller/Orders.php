@@ -4,6 +4,8 @@ namespace Ucc\Controller;
 
 use Ucc\Model\UseCase\OrdersGetAll as UseCaseOrdersGetAll;
 use Ucc\Model\UseCase\OrdersGetOne as UseCaseOrdersGetOne;
+use Ucc\Exception\NotFoundException;
+use Exception;
 
 /**
  * Class Orders
@@ -13,14 +15,19 @@ class Orders
 {
     /**
      * @return string
+     * @throws Exception
      */
     public function getAll()
     {
         $useCaseOrdersGetAll = new UseCaseOrdersGetAll();
 
-        $result = $useCaseOrdersGetAll->gogogo();
+        try{
+            $result = $useCaseOrdersGetAll->gogogo();
+        } catch (NotFoundException $e) {
+            throw new Exception("404 Not Found");
+        }
 
-        return json_encode(["data" => ["orders" => $result]]);
+        return ["orders" => $result];
     }
 
     /**
@@ -31,8 +38,8 @@ class Orders
     {
         $useCaseOrdersGetOne = new UseCaseOrdersGetOne($id);
 
-        $result = $useCaseOrdersGetOne->gogogo();
+        $result = $useCaseOrdersGetOne->gogogo($id);
 
-        return json_encode(["data" => ["user" => ["id" => $id]]]);
+        return ["order" => $result];
     }
 }

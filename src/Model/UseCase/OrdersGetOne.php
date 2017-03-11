@@ -2,6 +2,7 @@
 
 namespace Ucc\Model\UseCase;
 
+use Ucc\Exception\NotFoundException;
 use Ucc\Model\UseCase;
 
 /**
@@ -11,12 +12,26 @@ use Ucc\Model\UseCase;
 class OrdersGetOne extends UseCase
 {
     /**
-     *
+     * @param $id
+     * @throws NotFoundException
+     * @return void
      */
-    protected function execute($args)
+    protected function execute($id)
     {
         //users list coming from the repository/data layer
-        $this->result = ['user' => ['id' => $args]];
+
+        if ((int)$id !== 1) {
+            throw new NotFoundException();
+        }
+
+        $this->result = [
+            'id' => 123,
+            'customer' => [
+                'username' => 'fab4',
+                'name' => 'The Beatles'
+            ],
+            "item" => "bla bla "
+        ];
     }
 
     /**

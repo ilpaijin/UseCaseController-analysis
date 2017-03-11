@@ -2,6 +2,8 @@
 
 namespace Ucc\Model;
 
+use Exception;
+
 /**
  * Class IUseCase
  * @package Ucc\Model
@@ -19,13 +21,20 @@ abstract class UseCase
     protected $error;
 
     /**
-     * @param $args
+     * @param null $args
      * @return UseCase\VO\UseCaseResult
+     * @throws Exception
      */
-    public function gogogo($args)
+    public function gogogo($args = null)
     {
         $this->addPreconditions();
-        $this->execute($args);
+
+        try {
+            $this->execute($args);
+        } catch (Exception $e) {
+            throw $e;
+        }
+
         $this->addPostconditions();
         $this->finalize();
 

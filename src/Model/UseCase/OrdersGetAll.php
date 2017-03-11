@@ -10,10 +10,39 @@ use Ucc\Model\UseCase;
  */
 class OrdersGetAll extends UseCase
 {
+    /**
+     * @param $args
+     * @return void
+     */
     protected function execute($args)
     {
         //users list coming from the repository/data layer
-        $this->result = [1,2,3];
+        $this->result = [
+            1 => [
+                'id' => 123,
+                'customer' => [
+                    'username' => 'fab4',
+                    'name' => 'The Beatles'
+                ],
+                "item" => "bla bla "
+            ],
+            2 => [
+                'id' => 456,
+                'customer' => [
+                    'username' => 'cottonballs',
+                    'name' => 'Tom Waits'
+                ],
+                "item" => "bla bla "
+            ],
+            3 => [
+                'id' => 789,
+                'customer' => [
+                    'username' => 'thevoice',
+                    'name' => 'Frank Sinatra'
+                ],
+                "item" => "bla bla "
+            ],
+        ];
     }
 
     /**
