@@ -1,0 +1,10 @@
+{
+  "name": "UseCaseController Demo",
+  "author": "ilpaijin@gmail.com",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Ucc\\": "src/"
+    }
+  }
+}
