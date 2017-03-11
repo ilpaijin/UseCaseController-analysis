@@ -18,6 +18,12 @@ class Api
 
         $controller = "Ucc\\Controller\\".ucfirst($request[0]);
 
+        if (!class_exists($controller)) {
+            header("HTTP/1.1 400 Bad Request");
+            ob_end_flush();
+            return;
+        }
+
         $controller = new $controller();
 
         $method = strtolower($_SERVER['REQUEST_METHOD']);

@@ -38,7 +38,11 @@ class Orders
     {
         $useCaseOrdersGetOne = new UseCaseOrdersGetOne($id);
 
-        $result = $useCaseOrdersGetOne->gogogo($id);
+        try{
+            $result = $useCaseOrdersGetOne->gogogo($id);
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return ["order" => $result];
     }
