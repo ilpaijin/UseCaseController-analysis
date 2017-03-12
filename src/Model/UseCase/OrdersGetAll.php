@@ -2,13 +2,13 @@
 
 namespace Ucc\Model\UseCase;
 
-use Ucc\Model\UseCase;
+use Ucc\Model\UseCase\Contract\UseCaseBase;
 
 /**
  * Class OrdersGetAll
  * @package Ucc\Model\UseCase
  */
-class OrdersGetAll extends UseCase
+class OrdersGetAll extends UseCaseBase
 {
     /**
      * @param $args

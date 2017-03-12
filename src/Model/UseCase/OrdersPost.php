@@ -2,36 +2,25 @@
 
 namespace Ucc\Model\UseCase;
 
-use Ucc\Exception\NotFoundException;
 use Ucc\Model\UseCase\Contract\UseCaseBase;
 
 /**
  * Class OrdersGetOne
  * @package Ucc\Model\UseCase
  */
-class OrdersGetOne extends UseCaseBase
+class OrdersPost extends UseCaseBase
 {
     /**
-     * @param $id
+     * @param $order
      * @throws NotFoundException
      * @return void
      */
-    protected function performSteps($id)
+    protected function performSteps($order)
     {
-        //users list coming from the repository/data layer
+        $newOrder = json_decode($order, true);
+        $newOrder['id'] = bin2hex(openssl_random_pseudo_bytes(3));
 
-        if ((int)$id !== 1) {
-            throw new NotFoundException();
-        }
-
-        $this->result = [
-            'id' => 123,
-            'customer' => [
-                'username' => 'fab4',
-                'name' => 'The Beatles'
-            ],
-            "item" => "bla bla "
-        ];
+        $this->result = $newOrder;
     }
 
     /**

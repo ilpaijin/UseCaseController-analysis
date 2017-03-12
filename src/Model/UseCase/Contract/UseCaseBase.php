@@ -1,6 +1,6 @@
 <?php
 
-namespace Ucc\Model;
+namespace Ucc\Model\UseCase\Contract;
 
 use Exception;
 
@@ -8,7 +8,7 @@ use Exception;
  * Class IUseCase
  * @package Ucc\Model
  */
-abstract class UseCase
+abstract class UseCaseBase
 {
     /**
      * @var $result \Ucc\Model\UseCase\VO\UseCaseResult
@@ -17,7 +17,7 @@ abstract class UseCase
 
     /**
      * @param null $args
-     * @return UseCase\VO\UseCaseResult
+     * @return \Ucc\Model\UseCase\VO\UseCaseResult
      * @throws Exception
      */
     public function execute($args = null)
@@ -25,7 +25,7 @@ abstract class UseCase
         $this->addPreconditions();
 
         try {
-            $this->execute($args);
+            $this->performSteps($args);
         } catch (Exception $e) {
             throw $e;
         }

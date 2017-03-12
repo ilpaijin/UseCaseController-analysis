@@ -13,14 +13,14 @@ class Api
     /**
      *
      */
-    public function run() {
-        $request = explode("/", ltrim($_SERVER['REQUEST_URI'], "/"));
+    public function run()
+    {
+        $requestUri = explode("/", ltrim($_SERVER['REQUEST_URI'], "/"));
 
-        $controller = "Ucc\\Controller\\".ucfirst($request[0]);
+        $controller = "Ucc\\Controller\\".ucfirst($requestUri[0]);
 
         if (!class_exists($controller)) {
-            header("HTTP/1.1 400 Bad Request");
-            ob_end_flush();
+            $this->sendError();
             return;
         }
 
@@ -28,12 +28,19 @@ class Api
 
         $method = strtolower($_SERVER['REQUEST_METHOD']);
 
-        $resourceId = "";
+        $request = "";
+        $body = ['data' => ''];
 
         switch ($method) {
             case 'get':
-                $resourceId = isset($request[1]) && is_numeric($request[1]) ? $request[1] : "";
-                $action = $resourceId ? "getOne" : "getAll";
+                $request = isset($requestUri[1]) && is_numeric($requestUri[1]) ? $requestUri[1] : "";
+                $action = $request ? "getOne" : "getAll";
+                $status = "200 OK";
+                break;
+            case 'post':
+                $request = file_get_contents('php://input');
+                $action = "post";
+                $status = "201 Created";
                 break;
             default:
                 break;
@@ -43,12 +50,28 @@ class Api
 
         try {
             header("Content-Type: application/json; charset=utf-8;");
-            echo json_encode(["data" => $controller->$action($resourceId)]);
+
+            $result = $controller->$action($request);
+            $status = isset($result['status']) ? $result['status'] : $status;
+            $body = isset($result['data']) && !empty($result['data']) ? $result['data'] : $body;
+
+            header("HTTP/1.1 {$status}");
+            echo json_encode(['data' => $body]);
+
         } catch (Exception $e) {
             header("HTTP/1.1 {$e->getCode()} {$e->getMessage()}");
             echo json_encode(["error" => $e->getMessage()]);
         }
 
+        ob_end_flush();
+    }
+
+    /**
+     *
+     */
+    private function sendError()
+    {
+        header("HTTP/1.1 400 Bad Request");
         ob_end_flush();
     }
 }

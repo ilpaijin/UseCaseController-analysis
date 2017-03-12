@@ -4,6 +4,8 @@ namespace Ucc\Controller;
 
 use Ucc\Model\UseCase\OrdersGetAll as UseCaseOrdersGetAll;
 use Ucc\Model\UseCase\OrdersGetOne as UseCaseOrdersGetOne;
+use Ucc\Model\UseCase\OrdersPost as UseCaseOrdersPost;
+
 use Exception;
 
 /**
@@ -26,7 +28,7 @@ class Orders
             throw $e;
         }
 
-        return ["orders" => $result];
+        return ['data' => $result];
     }
 
     /**
@@ -44,6 +46,24 @@ class Orders
             throw $e;
         }
 
-        return ["order" => $result];
+        return ['data' => ['order' => $result]];
+    }
+
+    /**
+     * @param $order
+     * @return array
+     * @throws Exception
+     */
+    public function post($order)
+    {
+        $useCaseOrdersPost = new UseCaseOrdersPost($order);
+
+        try{
+            $result = $useCaseOrdersPost->execute($order);
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return ['data' => ['order' => $result]];
     }
 }
