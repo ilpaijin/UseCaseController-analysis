@@ -1,6 +1,12 @@
 {
   "name": "UseCaseController Demo",
-  "author": "ilpaijin@gmail.com",
+  "description": "Analisys of a Use Case Controller flow",
+  "authors": [
+    {
+      "name":"ilpaijin",
+      "email":"ilpaijin@gmail.com"
+    }
+  ],
   "require": {},
   "autoload": {
     "psr-4": {
