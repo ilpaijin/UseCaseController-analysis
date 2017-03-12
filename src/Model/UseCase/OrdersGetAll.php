@@ -14,7 +14,7 @@ class OrdersGetAll extends UseCase
      * @param $args
      * @return void
      */
-    protected function execute($args)
+    protected function performSteps($args)
     {
         //users list coming from the repository/data layer
         $this->result = [

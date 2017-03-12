@@ -16,7 +16,7 @@ class OrdersGetOne extends UseCase
      * @throws NotFoundException
      * @return void
      */
-    protected function execute($id)
+    protected function performSteps($id)
     {
         //users list coming from the repository/data layer
 

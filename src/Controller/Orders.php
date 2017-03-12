@@ -21,7 +21,7 @@ class Orders
         $useCaseOrdersGetAll = new UseCaseOrdersGetAll();
 
         try{
-            $result = $useCaseOrdersGetAll->gogogo();
+            $result = $useCaseOrdersGetAll->execute();
         } catch (Exception $e) {
             throw $e;
         }
@@ -30,15 +30,16 @@ class Orders
     }
 
     /**
-     * @param $id int
-     * @return string
+     * @param $id
+     * @return array
+     * @throws Exception
      */
     public function getOne($id)
     {
         $useCaseOrdersGetOne = new UseCaseOrdersGetOne($id);
 
         try{
-            $result = $useCaseOrdersGetOne->gogogo($id);
+            $result = $useCaseOrdersGetOne->execute($id);
         } catch (Exception $e) {
             throw $e;
         }

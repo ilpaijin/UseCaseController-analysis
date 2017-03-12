@@ -20,7 +20,7 @@ abstract class UseCase
      * @return UseCase\VO\UseCaseResult
      * @throws Exception
      */
-    public function gogogo($args = null)
+    public function execute($args = null)
     {
         $this->addPreconditions();
 
@@ -45,7 +45,7 @@ abstract class UseCase
      * @param $args
      * @return mixed
      */
-    abstract protected function execute($args);
+    abstract protected function performSteps($args);
 
     /**
      * @return mixed
