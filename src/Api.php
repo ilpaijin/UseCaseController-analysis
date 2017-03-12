@@ -17,7 +17,7 @@ class Api
     {
         $requestUri = explode("/", ltrim($_SERVER['REQUEST_URI'], "/"));
 
-        $controller = "Ucc\\Controller\\".ucfirst($requestUri[0]);
+        $controller = "Ucc\\Controller\\".ucfirst($requestUri[0])."Controller";
 
         if (!class_exists($controller)) {
             $this->sendError();

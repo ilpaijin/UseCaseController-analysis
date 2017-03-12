@@ -2,17 +2,17 @@
 
 namespace Ucc\Controller;
 
-use Ucc\Model\UseCase\OrdersGetAll as UseCaseOrdersGetAll;
-use Ucc\Model\UseCase\OrdersGetOne as UseCaseOrdersGetOne;
-use Ucc\Model\UseCase\OrdersPost as UseCaseOrdersPost;
+use Ucc\Controller\OrdersUseCase\GetAll as UseCaseOrdersGetAll;
+use Ucc\Controller\OrdersUseCase\GetOne as UseCaseOrdersGetOne;
+use Ucc\Controller\OrdersUseCase\Post as UseCaseOrdersPost;
 
 use Exception;
 
 /**
- * Class Orders
+ * Class OrdersController
  * @package Ucc\Controller
  */
-class Orders
+class OrdersController
 {
     /**
      * @return string

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ucc\Model\UseCase\Contract;
+namespace Ucc\Controller\OrdersUseCase\Contract;
 
 use Exception;
 

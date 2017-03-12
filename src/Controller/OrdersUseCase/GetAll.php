@@ -1,14 +1,14 @@
 <?php
 
-namespace Ucc\Model\UseCase;
+namespace Ucc\Controller\OrdersUseCase;
 
-use Ucc\Model\UseCase\Contract\UseCaseBase;
+use Ucc\Controller\OrdersUseCase\Contract\UseCaseBase;
 
 /**
  * Class OrdersGetAll
- * @package Ucc\Model\UseCase
+ * @package Ucc\Controller\OrdersUseCase
  */
-class OrdersGetAll extends UseCaseBase
+class GetAll extends UseCaseBase
 {
     /**
      * @param $args

@@ -1,15 +1,15 @@
 <?php
 
-namespace Ucc\Model\UseCase;
+namespace Ucc\Controller\OrdersUseCase;
 
 use Ucc\Exception\NotFoundException;
-use Ucc\Model\UseCase\Contract\UseCaseBase;
+use Ucc\Controller\OrdersUseCase\Contract\UseCaseBase;
 
 /**
  * Class OrdersGetOne
- * @package Ucc\Model\UseCase
+ * @package Ucc\Model\OrdersUseCase
  */
-class OrdersGetOne extends UseCaseBase
+class GetOne extends UseCaseBase
 {
     /**
      * @param $id
@@ -26,7 +26,7 @@ class OrdersGetOne extends UseCaseBase
             throw new NotFoundException();
         }
 
-        //users list coming from the repository/data layer
+        //users list coming from the repository/data layer§
         $this->result = [
             'id' => 123,
             'customer' => [
