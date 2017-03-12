@@ -55,7 +55,7 @@ abstract class UseCaseBase
     /**
      * @return mixed
      */
-    public function finalize()
+    private function finalize()
     {
         // no code yet
     }

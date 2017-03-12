@@ -17,6 +17,10 @@ class OrdersPost extends UseCaseBase
      */
     protected function performSteps($order)
     {
+        // $this->actionA();
+        // $this->actionB();
+        // $this->actionC();
+
         $newOrder = json_decode($order, true);
         $newOrder['id'] = bin2hex(openssl_random_pseudo_bytes(3));
 

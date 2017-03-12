@@ -18,12 +18,15 @@ class OrdersGetOne extends UseCaseBase
      */
     protected function performSteps($id)
     {
-        //users list coming from the repository/data layer
+        // $this->actionA();
+        // $this->actionB();
+        // $this->actionC();
 
         if ((int)$id !== 1) {
             throw new NotFoundException();
         }
 
+        //users list coming from the repository/data layer
         $this->result = [
             'id' => 123,
             'customer' => [
