@@ -9,5 +9,6 @@
 - run in the container bash `php -S 0.0.0.0:3000 -t public`
 - point the browser to the docker-machine ip (at port 3000), ex. `192.168.99.100:3000`
 - check the available endpoints:
-- - `/orders`
-- - `/orders/1`
+- - `GET /orders`
+- - `GET /orders/1`
+- - `POST /orders` (data folder contains a json payload example)
